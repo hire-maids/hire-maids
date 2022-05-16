@@ -1,189 +1,248 @@
 <template>
   <div class="my-10">
-    <br>
-    <v-snackbar v-model="snackbar" :multi-line="multiLine">{{ text }}
+    <br />
+    <v-snackbar v-model="snackbar" :multi-line="multiLine"
+      >{{ text }}
       <template v-slot:action="{ attrs }">
-        <v-btn color="red" text v-bind="attrs" @click="snackbar = false">Close</v-btn>
-      </template>  
+        <v-btn color="red" text v-bind="attrs" @click="snackbar = false"
+          >Close</v-btn
+        >
+      </template>
     </v-snackbar>
-   <v-container fluid id="offer">
-    <v-card outlined >
-      <v-img  src="../assets/img/hero-image.png" max-height="300"></v-img>
-    </v-card>
-    <v-card tile class="mx-1 my-3" flat>  
-      <v-row class="pt-5">
-        <v-col cols="12" sm="3" class="my-3 hidden-sm-only hidden-xs-only">
-          <div style="position: sticky; top: 76px">
-             <v-card flat class="px-2 py-3">
-            <v-toolbar flat>
-              <strong>Nationality</strong>
-            </v-toolbar>
-            <v-card-txt >
-              <v-row align="center">
-               <v-col  cols="12" sm="6" md="12" >
-                 <v-card  flat  class="d-flex justify-space-around">
-                    <v-chip-group  active-class="primary--text" >
-                      <v-chip class="mx-5 px-7" @click="searchNationality('Ethiopian')">Ethiopian</v-chip>
-                      <v-chip class="mx-5 px-7" @click="searchNationality('Philippines')">Philippines</v-chip>
-                    </v-chip-group>
-                 </v-card>
-               </v-col>
-              </v-row>
-            </v-card-txt>
-          </v-card>
-          </div>
-        </v-col>
-        <v-col cols="12" sm="9">
-            <v-row >
-            <v-col  cols="12">
-              <v-div style="position: sticky; top: 16px">
-              <v-tabs color="secondary" fixed-tabs v-model="tab">
-                <v-tab v-for="item in categories" :key="item"   @click='category(item)'>
-                  <span class="text-capitalize">{{item}}</span> 
-                </v-tab>
-              </v-tabs>
-              <v-sheet  class="pa-3" v-if="loading">
-                <v-skeleton-loader v-bind="attrs"
-                type="list-item-three-line, card-heading, list-item-three-line, card-heading"
-                ></v-skeleton-loader>
-              </v-sheet> 
-              <v-tabs-items v-model="tab">
-                <v-tab-item v-for="item in categories" :key="item">
-                <v-container v-for="(pro,proindex) in books" :key="proindex">
-                <v-card @click="detail(pro._id)" class="my-2">
-                 <v-row align="center" justify="center">
-                     <v-col cols="10" sm="4">
-                       <v-card outlined id="imageCard" class="px-3 py-3">
-                          <v-img  :src='pro.imageUrl' :lazy-src="`../assets/img/back.jpg`" max-height="180" ></v-img>
-                       </v-card>      
-                     </v-col>
-                     <v-col cols="10" sm="6">
-                        <h3 class=" blue--text" ><i>HM {{pro._id}}</i> </h3>
-                        <h4><i>{{pro.nationality}}</i> </h4>
-                        <h4 ><i>Experience: <span class="grey--text">{{pro.experience}} </span></i></h4>
-                        <h4 ><i>Speaks {{pro.language}}</i> </h4>
-                     </v-col>
-                 </v-row>
-                </v-card>
-                </v-container>
-                </v-tab-item>
-              </v-tabs-items>
-              </v-div>
-            </v-col>
-            </v-row>    
-        </v-col>
-      </v-row>
-    </v-card>
-    </v-container>
-    <br><br>
-      <div class="svg-border-waves text-white">
-       <v-img src="~@/assets/img/borderWavesBlue.svg"/>
+    <v-container fluid id="offer" style="max-width: 1200px; position: relative">
+      <v-card outlined>
+        <v-img src="../assets/img/hero-image.png" max-height="300"></v-img>
+      </v-card>
+      <div class="mb-15">
+        <div class="text-h5 text-sm-h4 text-md-h3 font-weight-black text-md-center mt-15 mb-5">
+          Hire Professioal Maids all over the world
+        </div>
+        <div
+          class="text-body-2 text-md-body-1 font-weight-light text-md-center mx-auto w-1/2"
+        >
+          Hire Maids brings reliable and professional maids from all over the
+          world to your door steps with out any hustle.
+        </div>
+        <div class="d-flex flex-sm-row flex-column justify-center mt-5">
+          <v-btn depressed large color="primary mb-5 mb-md-0"> Explore Maids </v-btn>
+          <v-btn depressed large class="ml-md-5"> Hire A Maid </v-btn>
+        </div>
       </div>
-      <br><br>
+
+      <v-card tile class="mx-1 my-3" flat>
+        <v-row class="pt-5">
+          <v-col cols="12">
+            <v-row>
+              <v-col cols="12">
+                <v-div style="position: sticky; top: 16px">
+                  <v-chip-group active-class="primary--text" mandatory column>
+                    <v-chip
+                      v-for="tag in categories"
+                      :key="tag"
+                      @click="category(tag)"
+                    >
+                      {{ tag }}
+                    </v-chip>
+                  </v-chip-group>
+
+                  <v-sheet class="pa-3" v-if="loading">
+                    <v-skeleton-loader
+                      v-bind="attrs"
+                      type="list-item-three-line, card-heading, list-item-three-line, card-heading"
+                    ></v-skeleton-loader>
+                  </v-sheet>
+
+                  <!-- <v-tabs-items v-model="tab">
+                    <v-tab-item v-for="item in categories" :key="item"> -->
+                  <!-- <v-container
+                      > -->
+                  <v-card
+                    v-for="(pro, proindex) in books"
+                    :key="proindex"
+                    class="my-10 py-8 px-8"
+                  >
+                    <v-row>
+                      <v-col cols="12" sm="3" style="padding: 0 !important">
+                        <v-card id="imageCard">
+                          <v-img
+                            :src="pro.imageUrl"
+                            :lazy-src="`../assets/img/back.jpg`"
+                            max-height="180"
+                          ></v-img>
+                        </v-card>
+                      </v-col>
+
+                      <v-col
+                        cols="12"
+                        sm="8"
+                        class="ml-md-8 mt-md-0 mt-5"
+                        style="padding: 0 !important"
+                      >
+                        <v-row>
+                          <v-col sm="8" cols="12" :style="align">
+                            <h3 class="blue--text">
+                              <i>{{ pro.fullName }}</i>
+                            </h3>
+                            <h4>
+                              <i>{{ pro.nationality }}</i>
+                            </h4>
+                            <h4>
+                              <i>
+                                <span class="grey--text"
+                                  >worked for {{ pro.experience }}
+                                </span></i
+                              >
+                            </h4>
+                            <h4>
+                              <i>Speaks {{ pro.language }}</i>
+                            </h4>
+                          </v-col>
+                          <v-col class="d-flex flex-column" sm="4" cols="12">
+                            <v-btn
+                              depressed
+                              color="primary"
+                              class="mb-3"
+                              @click="detail(pro._id)"
+                            >
+                              See details
+                            </v-btn>
+                            <v-btn depressed>
+                              Add to favorites
+                            </v-btn>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                    </v-row>
+                  </v-card>
+                  <!-- </v-container> -->
+                  <!-- </v-tab-item>
+                  </v-tabs-items> -->
+                </v-div>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-container>
+    <br /><br />
+    <div class="svg-border-waves text-white">
+      <v-img src="~@/assets/img/borderWavesBlue.svg" />
+    </div>
+    <br /><br />
   </div>
 </template>
+
 <script>
 import book from "../service/authonticationService";
 export default {
   data() {
-    return {  
-      books:[],
-      tab:null,
-      loading:true,
-      filterIcon:false,
+    return {
+      books: [],
+      tab: null,
+      loading: true,
+      filterIcon: false,
       windowWidth: window.innerWidth,
       multiLine: true,
       snackbar: false,
       text: "",
-      loading:false,
-      jobType:"",
-      nationality:"",
-      religion:"",
-      age:"",
-      searchError:false,
-      nationalityMenu:['Ethiopian','Philippines'],   
-      categories:['All','Ethiopian','Philippines'],    
+      loading: false,
+      jobType: "",
+      nationality: "",
+      religion: "",
+      age: "",
+      searchError: false,
+      nationalityMenu: ["Ethiopian", "Philippines"],
+      categories: ["All", "Ethiopian", "Philippines"],
     };
   },
-  async mounted(){
-        this.searchError=false;
-          const res = await book.getCustomers();
-          var allBooks = res.data;
-          var c=0;
-          for(c=0;c<allBooks.length;c++){
-              this.books.push(allBooks[c]);
-          }
-          this.loading=false;
-     this.$nextTick(() => {
-        window.addEventListener('resize', this.onResize);
-      })
-  } ,
-  beforeDestroy() { 
-    window.removeEventListener('resize', this.onResize); 
+
+  async mounted() {
+    this.searchError = false;
+    const res = await book.getCustomers();
+    var allBooks = res.data;
+    console.log(allBooks);
+    this.books = [...allBooks];
+
+    this.loading = false;
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.onResize);
+    });
   },
+
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
+  },
+
+  computed: {
+    align() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "text-align: center";
+        default:
+          return "text-align: left";
+      }
+    },
+  },
+
   methods: {
     onResize() {
-        this.windowWidth = window.innerWidth
-      },
-    async detail(id){
-      this.$router.push({ name: "customerDetail",params:{id:id} });
+      this.windowWidth = window.innerWidth;
+    },
+    async detail(id) {
+      this.$router.push({ name: "customerDetail", params: { id: id } });
       window.scrollTo(0, 0);
     },
-    async category(item){
-        this.books=[];
-        this.loading=true;
-        if(item === 'All'){
-          const res = await book.getCustomers();
-          var allBooks = res.data;
-          var c=0;
-          for(c=0;c<allBooks.length;c++){
-              this.books.push(allBooks[c]);
-          }
-          this.loading=false;
-        }else{
-          const responseNationality= await book.customerNationality(item);
-          var allCustomers = responseNationality.data;
-          for(var counter=0;counter<allCustomers.length;counter++){
-            this.books.push(allCustomers[counter]);
-          }
-          if(allCustomers.length>0)
-            this.loading=false;
+    async category(item) {
+      this.books = [];
+      this.loading = true;
+      if (item === "All") {
+        const res = await book.getCustomers();
+        var allBooks = res.data;
+        var c = 0;
+        for (c = 0; c < allBooks.length; c++) {
+          this.books.push(allBooks[c]);
         }
-       
-    },
-    async searchNationality(nationality){
-        this.books=[];
-        this.loading=true;
-        const responseNationality= await book.customerNationality(nationality);
+        this.loading = false;
+      } else {
+        const responseNationality = await book.customerNationality(item);
         var allCustomers = responseNationality.data;
-        for(var counter=0;counter<allCustomers.length;counter++){
+        for (var counter = 0; counter < allCustomers.length; counter++) {
           this.books.push(allCustomers[counter]);
         }
-        if(allCustomers.length>0)
-          this.loading=false;
-    }        
+        if (allCustomers.length > 0) this.loading = false;
+      }
+    },
+    async searchNationality(nationality) {
+      this.books = [];
+      this.loading = true;
+      const responseNationality = await book.customerNationality(nationality);
+      var allCustomers = responseNationality.data;
+      for (var counter = 0; counter < allCustomers.length; counter++) {
+        this.books.push(allCustomers[counter]);
+      }
+      if (allCustomers.length > 0) this.loading = false;
+    },
   },
 };
 </script>
-<style lang="scss">
-.v-tab{
-  text-transform: none !important;
 
-} 
-.v-tab:hover {
-   background-color:#2196F3;
-  
+<style lang="scss">
+.v-tab {
+  text-transform: none !important;
 }
-#imageCard{
+.v-tab:hover {
+  background-color: #2196f3;
+}
+#imageCard {
   border-color: #010203;
 }
 #contact {
-  background-color:rgb(3, 3, 3);
+  background-color: rgb(3, 3, 3);
 }
 p.mission {
-        font-size: 35px;
-        color: #444444ba;
-    }
+  font-size: 35px;
+  color: #444444ba;
+}
 
 #backgroundImg .container,
 #backgroundImg .row {
@@ -198,17 +257,17 @@ p.mission {
   overflow: hidden;
 }
 h2.intro-text {
-        font-size: 50px;
-        font-weight: bold;
-        color:#F69849;
+  font-size: 50px;
+  font-weight: bold;
+  color: #f69849;
 }
 p.description {
-        font-size: 30px;
-        color: #444444ba;
+  font-size: 30px;
+  color: #444444ba;
 }
 p.moto {
-        font-size: 40px;
-        color: white;
+  font-size: 40px;
+  color: white;
 }
 .circle {
   stroke: white;
@@ -261,9 +320,8 @@ p.moto {
   }
 }
 p.about {
-        font-size: 18px;
-    }
-
+  font-size: 18px;
+}
 </style>
 
 <style>
