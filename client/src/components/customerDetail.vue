@@ -13,12 +13,14 @@
                     src="https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
                   />
                 </v-avatar>
-                <p class="ml-3">{{detail.fullName}}</p>
+                <p class="ml-3">{{ detail.fullName }}</p>
               </v-card-title>
             </v-img>
             <div class="text-center mt-3">
-            <h2>{{detail.fullName.toUpperCase()}}</h2>
-            <v-card-subtitle>{{detail.nationality}}</v-card-subtitle>
+              <h2>
+                {{ detail.fullName ? detail.fullName.toUpperCase() : "" }}
+              </h2>
+              <v-card-subtitle>{{ detail.nationality }}</v-card-subtitle>
             </div>
           </v-card>
         </v-col>
@@ -39,20 +41,20 @@
         </v-col> -->
         <v-col cols="12" sm="6" class="mx-auto">
           <!-- <v-card class="pa-2" align="center"> -->
-          
+
           <video
             ref="videoRef"
             src=""
             id="video-container"
-            width="100%"
             height="250"
+            width="100%"
             controls
           ></video>
           <!-- </v-card> -->
         </v-col>
       </v-row>
 
-      <v-snackbar v-model="snackbar" :multi-line="multiLine"
+      <v-snackbar v-model="snackbar"
         >{{ text }}
         <template v-slot:action="{ attrs }">
           <v-btn color="red" text v-bind="attrs" @click="snackbar = false"
@@ -69,7 +71,7 @@
         <v-tab>Skills and Knowledge</v-tab>
 
         <v-tab-item>
-          <v-card class="pa-5">
+          <v-card class="pa-5 text-center text-sm-left">
             <h4 class="my-2 secondary--text">
               Name: <span class="grey--text">{{ detail.fullName }}</span>
             </h4>
@@ -102,7 +104,7 @@
         </v-tab-item>
 
         <v-tab-item>
-          <v-card class="pa-5">
+          <v-card class="pa-5 text-center text-sm-left">
             <h4 class="my-2 secondary--text">
               Experience:
               <span class="grey--text">{{ detail.experience }}</span>
@@ -114,7 +116,7 @@
         </v-tab-item>
 
         <v-tab-item>
-          <v-card class="pa-5">
+          <v-card class="pa-5 ">
             <h4 class="my-2 secondary--text">Skills:</h4>
             <h5>
               <p class="grey--text" style="white-space: pre-wrap">
@@ -191,6 +193,7 @@
     <br /><br />
   </div>
 </template>
+
 <script>
 import getdetail from "../service/authonticationService";
 export default {
@@ -206,19 +209,13 @@ export default {
       bookingError: false,
     };
   },
-  watch: {
-    tab() {
-      console.log(this.tab);
-    },
-  },
   async created() {
     try {
       const response = await getdetail.getDetailById(this.$route.params.id);
       this.detail = response.data;
       this.$refs.videoRef.src = this.detail.videoUrl;
-      this.$refs.videoRef.play();
     } catch (err) {
-      alert(err);
+      console.log(err.response);
     }
   },
   methods: {
@@ -265,9 +262,7 @@ export default {
 };
 </script>
 <style scoped>
-.video-wrapper {
-  width: 100%;
-  margin: auto;
-  max-width: 700px;
+.selectextShadowHost {
+  display: none !important;
 }
 </style>
