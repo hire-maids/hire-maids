@@ -9,12 +9,12 @@
         >
       </template>
     </v-snackbar>
-    <v-container fluid id="offer" style="max-width: 1200px; position: relative">
+    <v-container fluid id="offer" class="mt-5" style="max-width: 920px; position: relative">
       <v-card outlined>
-        <v-img src="../assets/img/hero-image.png" max-height="300"></v-img>
+        <v-img src="../assets/img/hero-image.png" max-height="200"></v-img>
       </v-card>
       <div class="mb-15">
-        <div class="text-h5 text-sm-h4 text-md-h3 font-weight-black text-md-center mt-15 mb-5">
+        <div class="text-h5 text-sm-h4 text-md-h4 font-weight-black text-md-center mt-15 mb-5">
           Hire Professioal Maids all over the world
         </div>
         <div
