@@ -215,6 +215,7 @@ p.moto {
   stroke-dasharray: 650;
   stroke-dashoffset: 650;
   -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   opacity: 0.3;
 }
 
@@ -222,9 +223,11 @@ p.moto {
   /*  border: 1px solid red;*/
   display: inline-block;
   -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease-in-out;
 
   .triangle {
     -webkit-transition: all 0.7s ease-in-out;
+    transition: all 0.5s ease-in-out;
     stroke-dasharray: 240;
     stroke-dashoffset: 480;
     stroke: white;
