@@ -1,28 +1,29 @@
 <template>
   <div>
-    <v-container class="my-10" style="max-width: 1200px; position: relative">
+    <v-container class="my-10" style="max-width: 920px; position: relative">
       <br /><br />
       <v-row>
-        <v-col cols="12" sm="4" class="pa-5 mx-auto">
-          <v-card class="pa-2" align="center" flat>
-            <br />
-            <v-img :src="detail.imageUrl" height="300" contain></v-img>
-          </v-card>
+        <v-col cols="12" sm="6" class="pa-5 mx-auto">
+          <!-- <v-card class="pa-2" align="center" flat> -->
+          <br />
+          <v-img :src="detail.imageUrl" height="240" cover></v-img>
+          <!-- </v-card> -->
         </v-col>
-        <v-col cols="12" sm="8" class="pa-5 mx-auto">
-          <v-card class="pa-2" align="center">
-            <br />
-            <video
-              ref="videoRef"
-              src=""
-              id="video-container"
-              width="100%"
-              height="300"
-              controls
-            ></video>
-          </v-card>
+        <v-col cols="12" sm="6" class="mx-auto">
+          <!-- <v-card class="pa-2" align="center"> -->
+          <br />
+          <video
+            ref="videoRef"
+            src=""
+            id="video-container"
+            width="100%"
+            height="250"
+            controls
+          ></video>
+          <!-- </v-card> -->
         </v-col>
       </v-row>
+
       <v-snackbar v-model="snackbar" :multi-line="multiLine"
         >{{ text }}
         <template v-slot:action="{ attrs }">
@@ -31,9 +32,15 @@
           >
         </template>
       </v-snackbar>
+
       <br />
-      <v-row no-gutters>
-        <v-col cols="12" sm="4" class="pa-5 mx-auto">
+
+      <v-tabs fixed-tabs v-model="tab">
+        <v-tab>Basic Info</v-tab>
+        <v-tab>Education and Experience</v-tab>
+        <v-tab>Skills and Knowledge</v-tab>
+
+        <v-tab-item >
           <h3 class="text-center orange--text">Basic info</h3>
           <v-card class="pa-5" align="center">
             <h3 class="text-center my-2 blue--text">HM {{ detail._id }}</h3>
@@ -63,8 +70,9 @@
               Religion: <span class="grey--text">{{ detail.religion }}</span>
             </h4>
           </v-card>
-        </v-col>
-        <v-col cols="12" sm="4" class="pa-5 mx-auto">
+        </v-tab-item>
+
+        <v-tab-item >
           <h3 class="text-center orange--text">Education & Experience:</h3>
           <v-card class="pa-5" align="center">
             <h4 class="text-center my-2 secondary--text">
@@ -75,8 +83,9 @@
               Job Type: <span class="grey--text">{{ detail.jobType }}</span>
             </h4>
           </v-card>
-        </v-col>
-        <v-col cols="12" sm="4" class="pa-5 mx-auto">
+        </v-tab-item>
+
+        <v-tab-item >
           <h3 class="text-center orange--text">Skills & Knowledge:</h3>
           <v-card class="pa-5">
             <h4 class="my-2 secondary--text">Skills:</h4>
@@ -145,8 +154,9 @@
               >
             </div>
           </v-card>
-        </v-col>
-      </v-row>
+        </v-tab-item>
+      </v-tabs>
+      
     </v-container>
     <br /><br />
     <div class="svg-border-waves text-white">
@@ -160,6 +170,7 @@ import getdetail from "../service/authonticationService";
 export default {
   data() {
     return {
+      tab: 0,
       detail: {},
       snackbar: false,
       loading: false,
@@ -168,6 +179,11 @@ export default {
       text: "",
       bookingError: false,
     };
+  },
+  watch: {
+    tab() {
+      console.log(this.tab)
+    }
   },
   async created() {
     try {
