@@ -34,7 +34,7 @@
           <v-col cols="12">
             <v-row>
               <v-col cols="12">
-                <v-div style="position: sticky; top: 16px">
+                <div style="position: sticky; top: 16px">
                   <v-chip-group active-class="primary--text" mandatory column>
                     <v-chip
                       v-for="tag in categories"
@@ -117,7 +117,7 @@
                   <!-- </v-container> -->
                   <!-- </v-tab-item>
                   </v-tabs-items> -->
-                </v-div>
+                </div>
               </v-col>
             </v-row>
           </v-col>

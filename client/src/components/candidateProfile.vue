@@ -1,205 +1,274 @@
 <template>
   <div class="my-10">
-    <br><br>
-    <v-snackbar v-model="snackbar" :multi-line="multiLine">{{ text }}
+    <br /><br />
+    <v-snackbar v-model="snackbar" :multi-line="multiLine"
+      >{{ text }}
       <template v-slot:action="{ attrs }">
-        <v-btn color="red" text v-bind="attrs" @click="snackbar = false">Close</v-btn>
-      </template>  
+        <v-btn color="red" text v-bind="attrs" @click="snackbar = false"
+          >Close</v-btn
+        >
+      </template>
     </v-snackbar>
-   <v-container fluid id="offer">
-    <v-card tile class="mx-1 my-3" flat>  
-      <v-row class="pt-5">
-        <v-col cols="12" sm="3" class="my-3">
-          <div style="position: sticky; top: 76px">
-             <v-card flat outlined class="px-2 py-3">
-            <v-toolbar flat>
-              <strong>Filter option</strong>
-              <v-spacer></v-spacer>
-              <v-icon color="black" class="mr-2" @click="filterIcon=!filterIcon">mdi-chevron-down</v-icon>
-            </v-toolbar>
-            <div class="text-center mt-4">
-                   <span class="red--text" v-if="searchError">How do you want to search?</span>
-             </div>
-            <v-card-txt v-if="windowWidth>960 || filterIcon">
-              <v-row align="center">
-                <v-col class="d-flex" cols="12" sm="6" md="12" @click='resetOption()'><strong>Job type:</strong>
-                  <v-spacer></v-spacer> <v-select :items="jobTypeMenu" label="select job type"  dense outlined class="pl-3" v-model="jobType"></v-select>
+    <v-container fluid id="offer" style="max-width: 920px; position: relative">
+      <div>
+        <v-card flat outlined class="px-2 py-3">
+          <v-toolbar flat>
+            <strong>Filter option</strong>
+            <v-spacer></v-spacer>
+            <v-icon color="black" class="mr-2" @click="filterIcon = !filterIcon"
+              >mdi-chevron-down</v-icon
+            >
+          </v-toolbar>
+          <v-card-txt v-if="windowWidth > 960 || filterIcon">
+            <v-row align="center">
+              <v-col cols="12">
+                <v-select
+                  :items="jobTypeMenu"
+                  label="select job type"
+                  dense
+                  outlined
+                  v-model="jobType"
+                ></v-select>
+              </v-col>
+              <v-col cols="12">
+                <v-select
+                  :items="nationalityMenu"
+                  label="select nationality"
+                  dense
+                  outlined
+                  v-model="nationality"
+                ></v-select>
+              </v-col>
+              <v-col cols="12">
+                <v-select
+                  :items="religionMenu"
+                  label="select religion"
+                  dense
+                  outlined
+                  v-model="religion"
+                ></v-select>
+              </v-col>
+              <v-col cols="12">
+                <v-select
+                  :items="ageMenu"
+                  label="select age"
+                  dense
+                  outlined
+                  v-model="age"
+                ></v-select>
+              </v-col>
+            </v-row>
+          </v-card-txt>
+          <div
+            class="text-xs-center primary"
+            v-if="windowWidth > 960 || filterIcon"
+          >
+            <v-btn text @click="searchByCatagory" block
+              ><span class="text-capitalize white--text">Search</span></v-btn
+            >
+          </div>
+        </v-card>
+      </div>
+      <v-card tile class="mx-1 my-3" flat>
+        <v-row class="pt-5">
+          <v-col cols="12">
+            <v-sheet class="pa-3" v-if="loading">
+              <v-skeleton-loader
+                v-bind="attrs"
+                type="list-item-three-line, card-heading, list-item-three-line, card-heading"
+              ></v-skeleton-loader>
+            </v-sheet>
+
+            <v-sheet class="pa-3" v-if="loading">
+              <v-skeleton-loader
+                v-bind="attrs"
+                type="divider, list-item-three-line, card-heading, list-item-three-line, card-heading"
+              ></v-skeleton-loader>
+            </v-sheet>
+
+            <v-card
+              v-for="(pro, proindex) in books"
+              :key="proindex"
+              class="my-10 py-8 px-8"
+            >
+              <v-row>
+                <v-col cols="12" sm="3" style="padding: 0 !important">
+                  <v-card id="imageCard">
+                    <v-img
+                      :src="pro.imageUrl"
+                      :lazy-src="`../assets/img/back.jpg`"
+                      max-height="180"
+                    ></v-img>
+                  </v-card>
                 </v-col>
-                <v-col class="d-flex" cols="12" sm="6" md="12" @click='resetOption()'><strong>Nationality:</strong>
-                  <v-spacer></v-spacer> <v-select :items="nationalityMenu" label="select nationality"  dense outlined class="pl-3" v-model="nationality"></v-select>
-                </v-col>
-                <v-col class="d-flex" cols="12" sm="6" md="12" @click='resetOption()'><strong>Religion:</strong>
-                  <v-spacer></v-spacer> <v-select :items="religionMenu" label="select religion" dense outlined class="pl-4" v-model="religion"></v-select>
-                </v-col>
-                <v-col class="d-flex" cols="12" sm="6" md="12" @click='resetOption()'><strong>Age:</strong>
-                  <v-spacer></v-spacer> <v-select :items="ageMenu" label="select age" dense outlined class="pl-4" v-model="age"></v-select>
+
+                <v-col
+                  cols="12"
+                  sm="8"
+                  class="ml-md-8 mt-md-0 mt-5"
+                  style="padding: 0 !important"
+                >
+                  <v-row>
+                    <v-col sm="8" cols="12" class="text-center text-md-left">
+                      <h3 class="blue--text">
+                        <i>{{ pro.fullName }}</i>
+                      </h3>
+                      <h3 class="grey--text">
+                        <i>{{ pro.age }}</i>
+                      </h3>
+                      <h4>
+                        <i>{{ pro.nationality }}</i>
+                      </h4>
+                      <h4 class="grey--text">
+                        <i>{{ pro.dwc }}</i>
+                      </h4>
+                      <h4>
+                        <i>
+                          <span>worked for {{ pro.experience }} </span></i
+                        >
+                      </h4>
+                      <h4 class="grey--text">
+                        <i>{{ pro.religion }}</i>
+                      </h4>
+                      <h4>
+                        <i>Speaks {{ pro.language }}</i>
+                      </h4>
+                    </v-col>
+                    <v-col class="d-flex flex-column" sm="4" cols="12">
+                      <v-btn depressed color="primary" class="mb-3">
+                        Shop
+                      </v-btn>
+                      <v-btn depressed @click="detail(pro._id)">
+                        See details
+                      </v-btn>
+                    </v-col>
+                  </v-row>
                 </v-col>
               </v-row>
-            </v-card-txt>
-            <div class="text-xs-center primary" v-if="windowWidth>960 || filterIcon">
-              <v-btn text @click="searchByCatagory" block><span class="text-capitalize white--text">Search</span></v-btn>
-            </div>
-          </v-card>
-          </div>
-        </v-col>
-        <v-col cols="12" sm="9">
-          <v-sheet  class="pa-3" v-if="loading">
-                <v-skeleton-loader v-bind="attrs"
-                type="list-item-three-line, card-heading, list-item-three-line, card-heading"
-                ></v-skeleton-loader>
-              </v-sheet> 
-              <v-sheet  class="pa-3" v-if="loading">
-                <v-skeleton-loader v-bind="attrs"
-                type="divider, list-item-three-line, card-heading, list-item-three-line, card-heading"
-                ></v-skeleton-loader>
-              </v-sheet> 
-          <v-layout row wrap justify-space-around >
-          <v-flex xs6 md3 v-for="(pro,proindex) in books" :key="proindex">
-            <v-hover v-slot:default="{ hover }">
-            <v-card class="py-4" max-width="250" max-heith="250" align="center" @click="detail(pro._id)" :elevation="hover ? 12 : 0" flat>
-                 <v-avatar size="150" class="ma-10">
-                    <v-img  :src='pro.imageUrl' :lazy-src="`../assets/img/back.jpg`"  width="150" height="150"></v-img>
-                 </v-avatar> 
-                 <h4 class="text-center   blue--text" >HM {{pro._id}}</h4>
-                 <h5 class="text-center  secondary--text">Age: <span class="grey--text">{{pro.age}}</span></h5>
-                 <h5 class="text-center  secondary--text">Nationality: <span class="grey--text">{{pro.nationality}}</span></h5>
-                  <h5 class="text-center  orange--text">{{pro.availability}}</h5>
-                 <h5 class="text-center  seconday--text">DWC: <span class="grey--text">{{pro.dwc}}</span></h5>
-                 <h5 class="text-center  secondary--text">Experience: <span class="grey--text">{{pro.experience}}</span></h5>
-                 <h5 class="text-center orange--text">Job type: {{pro.jobType}}</h5>
-                 <div class="text-xs-center  mx-3" v-if="!$store.state.isUserLoggedIn || $store.state.user.role=='customer'">
-                    <v-btn block rounded outlined class="primary"><span class="text-capitalize white--text">Book</span></v-btn>
-                 </div>
-                 <div class="text-xs-center  mx-3" v-if="$store.state.isUserLoggedIn && $store.state.user.role=='admin'">
-                    <v-btn block rounded outlined class="primary"><span class="text-capitalize white--text">Delete</span></v-btn>
-                 </div>
             </v-card>
-            </v-hover>
-        </v-flex>
-      </v-layout>
-        </v-col>
-      </v-row>
-    </v-card>
+          </v-col>
+        </v-row>
+      </v-card>
     </v-container>
-    <br><br>
-      <div class="svg-border-waves text-white">
-       <v-img src="~@/assets/img/borderWavesBlue.svg"/>
-      </div>
-      <br><br>
+    <br /><br />
+    <div class="svg-border-waves text-white">
+      <v-img src="~@/assets/img/borderWavesBlue.svg" />
+    </div>
+    <br /><br />
   </div>
 </template>
 <script>
 import book from "../service/authonticationService";
 export default {
   data() {
-    return {  
-      books:[],
-      loading:true,
-      filterIcon:false,
+    return {
+      books: [],
+      loading: true,
+      filterIcon: false,
       windowWidth: window.innerWidth,
       multiLine: true,
       snackbar: false,
       text: "",
-      loading:false,
-      jobType:"",
-      nationality:"",
-      religion:"",
-      age:"",
-      searchError:false,
-      jobTypeMenu:['Full time','Part time'],
-      nationalityMenu:['Ethiopian','Philippines'],
-      religionMenu:['Muslim','Christian','Others'],
-      ageMenu:['18-25','26-30','31-40','> 40'],
-       
+      loading: false,
+      jobType: "",
+      nationality: "",
+      religion: "",
+      age: "",
+      searchError: false,
+      jobTypeMenu: ["Full time", "Part time"],
+      nationalityMenu: ["Ethiopian", "Philippines"],
+      religionMenu: ["Muslim", "Christian", "Others"],
+      ageMenu: ["18-25", "26-30", "31-40", "> 40"],
     };
   },
-  async mounted(){
-        this.searchError=false;
-          const res = await book.getCustomers();
-          var allBooks = res.data;
-          var c=0;
-          for(c=0;c<allBooks.length;c++){
-              this.books.push(allBooks[c]);
-          }
-          this.loading=false;
-     this.$nextTick(() => {
-        window.addEventListener('resize', this.onResize);
-      })
-  } ,
-  beforeDestroy() { 
-    window.removeEventListener('resize', this.onResize); 
+  async mounted() {
+    this.searchError = false;
+    const res = await book.getCustomers();
+    var allBooks = res.data;
+
+    this.books = [...allBooks];
+
+    this.loading = false;
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.onResize);
+    });
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
   },
   methods: {
     onResize() {
-        this.windowWidth = window.innerWidth
-      },
-    resetOption(){
-      this.jobType="";
-      this.nationality="";
-      this.religion="";
-      this.age="";
+      this.windowWidth = window.innerWidth;
     },
-    async detail(id){
-      this.$router.push({ name: "customerDetail",params:{id:id} });
+    resetOption() {
+      this.jobType = "";
+      this.nationality = "";
+      this.religion = "";
+      this.age = "";
+    },
+    async detail(id) {
+      this.$router.push({ name: "customerDetail", params: { id: id } });
       window.scrollTo(0, 0);
     },
-    async searchByCatagory(){
-          if(this.jobType==="" && this.nationality==="" && this.religion==="" && this.age===""){
-            this.searchError=true;
+    async searchByCatagory() {
+      if (
+        this.jobType === "" &&
+        this.nationality === "" &&
+        this.religion === "" &&
+        this.age === ""
+      ) {
+        this.searchError = true;
+      } else {
+        this.loading = true;
+        this.books = [];
+        this.searchError = false;
+        var counter = 0;
+        var allCustomers = "";
+        if (this.jobType != "") {
+          const responseJobType = await book.customerJobType(this.jobType);
+          allCustomers = responseJobType.data;
+          for (counter = 0; counter < allCustomers.length; counter++) {
+            this.books.push(allCustomers[counter]);
           }
-          else{
-           this.loading=true;
-           this.books=[];
-           this.searchError=false;
-           var counter=0;
-           var allCustomers="";
-            if(this.jobType!=""){
-                const responseJobType = await book.customerJobType(this.jobType);
-                allCustomers= responseJobType.data;
-                for(counter=0;counter<allCustomers.length;counter++){
-                  this.books.push(allCustomers[counter]);
-                }
-              this.loading=false;
-              }
-              else if(this.nationality!="")
-              {
-                const responseNationality= await book.customerNationality(this.nationality);
-                allCustomers = responseNationality.data;
-                for(counter=0;counter<allCustomers.length;counter++){
-                  this.books.push(allCustomers[counter]);
-                }
-                this.loading=false;
-              }
-              else if(this.religion!=""){
-                const responseReligion = await book.customerReligion(this.religion);
-                allCustomers = responseReligion.data;
-                for(counter=0;counter<allCustomers.length;counter++){
-                  this.books.push(allCustomers[counter]);
-                }
-                this.loading=false;
-              }
-              else if(this.age!=""){
-                this.datePageNumber++;
-                const responseAge = await book.customerAge(this.age);
-                allCustomers = responseAge.data;
-                for(counter=0;counter<allCustomers.length;counter++){
-                  this.books.push(allCustomers[counter]);
-                }
-                this.loading=false;
-              }
-          } 
-     }        
+          this.loading = false;
+        } else if (this.nationality != "") {
+          const responseNationality = await book.customerNationality(
+            this.nationality
+          );
+          allCustomers = responseNationality.data;
+          for (counter = 0; counter < allCustomers.length; counter++) {
+            this.books.push(allCustomers[counter]);
+          }
+          this.loading = false;
+        } else if (this.religion != "") {
+          const responseReligion = await book.customerReligion(this.religion);
+          allCustomers = responseReligion.data;
+          for (counter = 0; counter < allCustomers.length; counter++) {
+            this.books.push(allCustomers[counter]);
+          }
+          this.loading = false;
+        } else if (this.age != "") {
+          this.datePageNumber++;
+          const responseAge = await book.customerAge(this.age);
+          allCustomers = responseAge.data;
+          for (counter = 0; counter < allCustomers.length; counter++) {
+            this.books.push(allCustomers[counter]);
+          }
+          this.loading = false;
+        }
+      }
+    },
   },
 };
 </script>
 <style lang="scss">
 #contact {
-  background-color:rgb(3, 3, 3);
+  background-color: rgb(3, 3, 3);
 }
 p.mission {
-        font-size: 35px;
-        color: #444444ba;
-    }
+  font-size: 35px;
+  color: #444444ba;
+}
 
 #backgroundImg .container,
 #backgroundImg .row {
@@ -214,17 +283,17 @@ p.mission {
   overflow: hidden;
 }
 h2.intro-text {
-        font-size: 50px;
-        font-weight: bold;
-        color:#F69849;
+  font-size: 50px;
+  font-weight: bold;
+  color: #f69849;
 }
 p.description {
-        font-size: 30px;
-        color: #444444ba;
+  font-size: 30px;
+  color: #444444ba;
 }
 p.moto {
-        font-size: 40px;
-        color: white;
+  font-size: 40px;
+  color: white;
 }
 .circle {
   stroke: white;
@@ -277,9 +346,8 @@ p.moto {
   }
 }
 p.about {
-        font-size: 18px;
-    }
-
+  font-size: 18px;
+}
 </style>
 
 <style>

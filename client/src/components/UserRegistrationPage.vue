@@ -1,10 +1,11 @@
 <template>
-  <div class="text-center mb-7">
+  <div class="text-center mb-10">
+    <div style="max-width: 920px; position: relative; margin: auto">
        <div class="mt-10">
           <br><br>  
         </div>  
         <v-row align="center" justify="center" >
-          <v-col cols="12" md="10" sm="6">
+          <v-col cols="12">
             <v-card class="elevation-6 mt-3">
              <v-window>
                 <v-window-item>
@@ -54,6 +55,7 @@
           </v-col>
       </v-row>
       <br><br>
+      </div>
       <div class="svg-border-waves text-white">
        <v-img src="~@/assets/img/borderWavesBlue.svg"/>
       </div>
