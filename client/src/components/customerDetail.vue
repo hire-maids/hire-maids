@@ -3,15 +3,43 @@
     <v-container class="my-10" style="max-width: 920px; position: relative">
       <br /><br />
       <v-row>
-        <v-col cols="12" sm="6" class="pa-5 mx-auto">
-          <!-- <v-card class="pa-2" align="center" flat> -->
-          <br />
-          <v-img :src="detail.imageUrl" height="240" cover></v-img>
-          <!-- </v-card> -->
+        <v-col cols="12" sm="6" class="mx-auto">
+          <v-card align="center" flat>
+            <v-img :src="detail.imageUrl" height="160">
+              <v-card-title class="white--text mt-8">
+                <v-avatar size="56">
+                  <img
+                    alt="user"
+                    src="https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
+                  />
+                </v-avatar>
+                <p class="ml-3">{{detail.fullName}}</p>
+              </v-card-title>
+            </v-img>
+            <div class="text-center mt-3">
+            <h2>{{detail.fullName.toUpperCase()}}</h2>
+            <v-card-subtitle>{{detail.nationality}}</v-card-subtitle>
+            </div>
+          </v-card>
         </v-col>
+        <!-- <v-col cols="12" sm="6" class="pa-5 mx-auto">
+          <v-card>
+            <v-img :src="detail.imageUrl" cover>
+              <v-card-title class="white--text mt-8">
+                <v-avatar size="56">
+                  <img
+                    alt="user"
+                    src="https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
+                  />
+                </v-avatar>
+                <p class="ml-3">John Doe</p>
+              </v-card-title>
+            </v-img>
+          </v-card>
+        </v-col> -->
         <v-col cols="12" sm="6" class="mx-auto">
           <!-- <v-card class="pa-2" align="center"> -->
-          <br />
+          
           <video
             ref="videoRef"
             src=""
@@ -35,58 +63,57 @@
 
       <br />
 
-      <v-tabs fixed-tabs v-model="tab">
+      <v-tabs v-model="tab">
         <v-tab>Basic Info</v-tab>
         <v-tab>Education and Experience</v-tab>
         <v-tab>Skills and Knowledge</v-tab>
 
-        <v-tab-item >
-          <h3 class="text-center orange--text">Basic info</h3>
-          <v-card class="pa-5" align="center">
-            <h3 class="text-center my-2 blue--text">HM {{ detail._id }}</h3>
+        <v-tab-item>
+          <v-card class="pa-5">
+            <h4 class="my-2 secondary--text">
+              Name: <span class="grey--text">{{ detail.fullName }}</span>
+            </h4>
             <h4
-              class="text-center secondary--text"
+              class="secondary--text"
               v-if="
                 $store.state.isUserLoggedIn && $store.state.user.role == 'admin'
               "
             >
               <span>{{ detail.phoneNumber }}</span>
             </h4>
-            <h4 class="text-center my-2 secondary--text">
+            <h4 class="my-2 secondary--text">
               Designation: <span class="grey--text">{{ detail.dwc }}</span>
             </h4>
-            <h4 class="text-center my-2 secondary--text">
+            <h4 class="my-2 secondary--text">
               Age: <span class="grey--text">{{ detail.age }}</span>
             </h4>
-            <h4 class="text-center my-2 secondary--text">
+            <h4 class="my-2 secondary--text">
               Nationality:
               <span class="grey--text">{{ detail.nationality }}</span>
             </h4>
-            <h4 class="text-center my-2 secondary--text">
+            <h4 class="my-2 secondary--text">
               Availability:
               <span class="grey--text">{{ detail.availability }}</span>
             </h4>
-            <h4 class="text-center my-2 secondary--text">
+            <h4 class="my-2 secondary--text">
               Religion: <span class="grey--text">{{ detail.religion }}</span>
             </h4>
           </v-card>
         </v-tab-item>
 
-        <v-tab-item >
-          <h3 class="text-center orange--text">Education & Experience:</h3>
-          <v-card class="pa-5" align="center">
-            <h4 class="text-center my-2 secondary--text">
+        <v-tab-item>
+          <v-card class="pa-5">
+            <h4 class="my-2 secondary--text">
               Experience:
               <span class="grey--text">{{ detail.experience }}</span>
             </h4>
-            <h4 class="text-center my-2 secondary--text">
+            <h4 class="my-2 secondary--text">
               Job Type: <span class="grey--text">{{ detail.jobType }}</span>
             </h4>
           </v-card>
         </v-tab-item>
 
-        <v-tab-item >
-          <h3 class="text-center orange--text">Skills & Knowledge:</h3>
+        <v-tab-item>
           <v-card class="pa-5">
             <h4 class="my-2 secondary--text">Skills:</h4>
             <h5>
@@ -156,7 +183,6 @@
           </v-card>
         </v-tab-item>
       </v-tabs>
-      
     </v-container>
     <br /><br />
     <div class="svg-border-waves text-white">
@@ -182,8 +208,8 @@ export default {
   },
   watch: {
     tab() {
-      console.log(this.tab)
-    }
+      console.log(this.tab);
+    },
   },
   async created() {
     try {
