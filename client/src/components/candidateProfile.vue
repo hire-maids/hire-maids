@@ -21,59 +21,39 @@
           </v-toolbar>
           <v-card-txt v-if="windowWidth > 960 || filterIcon">
             <v-row align="center">
-              <v-col
-                
-                cols="12"
-                
-                >
+              <v-col cols="12">
                 <v-select
                   :items="jobTypeMenu"
                   label="select job type"
                   dense
                   outlined
-                 
                   v-model="jobType"
                 ></v-select>
               </v-col>
-              <v-col
-                
-                cols="12"
-                
-                >
+              <v-col cols="12">
                 <v-select
                   :items="nationalityMenu"
                   label="select nationality"
                   dense
                   outlined
-                 
                   v-model="nationality"
                 ></v-select>
               </v-col>
-              <v-col
-                
-                cols="12"
-                
-                >
+              <v-col cols="12">
                 <v-select
                   :items="religionMenu"
                   label="select religion"
                   dense
                   outlined
-                  
                   v-model="religion"
                 ></v-select>
               </v-col>
-              <v-col
-                
-                cols="12"
-                
-                >
+              <v-col cols="12">
                 <v-select
                   :items="ageMenu"
                   label="select age"
                   dense
                   outlined
-                  
                   v-model="age"
                 ></v-select>
               </v-col>
@@ -144,9 +124,7 @@
                       </h4>
                       <h4>
                         <i>
-                          <span 
-                            >worked for {{ pro.experience }}
-                          </span></i
+                          <span>worked for {{ pro.experience }} </span></i
                         >
                       </h4>
                       <h4 class="grey--text">
@@ -207,11 +185,9 @@ export default {
     this.searchError = false;
     const res = await book.getCustomers();
     var allBooks = res.data;
-    console.log(allBooks);
-    var c = 0;
-    for (c = 0; c < allBooks.length; c++) {
-      this.books.push(allBooks[c]);
-    }
+
+    this.books = [...allBooks];
+
     this.loading = false;
     this.$nextTick(() => {
       window.addEventListener("resize", this.onResize);
