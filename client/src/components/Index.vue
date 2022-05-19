@@ -9,22 +9,43 @@
         >
       </template>
     </v-snackbar>
-    <v-container fluid id="offer" class="mt-5" style="max-width: 920px; position: relative">
+    <v-container
+      fluid
+      id="offer"
+      class="mt-5"
+      style="max-width: 920px; position: relative"
+    >
       <v-card outlined>
         <v-img src="../assets/img/hero-image.png" max-height="200"></v-img>
       </v-card>
       <div class="mb-15">
-        <div class="text-h5 text-sm-h4 text-md-h4 font-weight-black text-md-center mt-15 mb-5">
+        <div
+          class="
+            text-h5 text-sm-h4 text-md-h4
+            font-weight-black
+            text-md-center
+            mt-15
+            mb-5
+          "
+        >
           Hire Professioal Maids all over the world
         </div>
         <div
-          class="text-body-2 text-md-body-1 font-weight-light text-md-center mx-auto w-1/2"
+          class="
+            text-body-2 text-md-body-1
+            font-weight-light
+            text-md-center
+            mx-auto
+            w-1/2
+          "
         >
           Hire Maids brings reliable and professional maids from all over the
           world to your door steps with out any hustle.
         </div>
         <div class="d-flex flex-sm-row flex-column justify-center mt-5">
-          <v-btn depressed large color="primary mb-5 mb-md-0"> Explore Maids </v-btn>
+          <v-btn depressed large color="primary mb-5 mb-md-0">
+            Explore Maids
+          </v-btn>
           <v-btn depressed large class="ml-md-5"> Hire A Maid </v-btn>
         </div>
       </div>
@@ -63,12 +84,20 @@
                   >
                     <v-row>
                       <v-col cols="12" sm="3" style="padding: 0 !important">
-                        <v-card id="imageCard">
-                          <v-img
+                        <v-card id="imageCard" style="background-color: #000">
+                          <!-- <v-img
                             :src="pro.imageUrl"
                             :lazy-src="`../assets/img/back.jpg`"
                             max-height="180"
-                          ></v-img>
+                          ></v-img> -->
+                          <video
+                            ref="videoRef"
+                            :src="pro.videoUrl"
+                            id="video-container"
+                            height="180"
+                            width="100%"
+                            controls
+                          ></video>
                         </v-card>
                       </v-col>
 
@@ -106,9 +135,7 @@
                             >
                               See details
                             </v-btn>
-                            <v-btn depressed>
-                              Add to favorites
-                            </v-btn>
+                            <v-btn depressed> Add to favorites </v-btn>
                           </v-col>
                         </v-row>
                       </v-col>
