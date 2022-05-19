@@ -69,6 +69,7 @@
           </div>
         </v-card>
       </div>
+
       <v-card tile class="mx-1 my-3" flat>
         <v-row class="pt-5">
           <v-col cols="12">
@@ -86,30 +87,26 @@
               ></v-skeleton-loader>
             </v-sheet>
 
-            <v-card
-              v-for="(pro, proindex) in books"
-              :key="proindex"
-              class="my-10 py-8 px-8"
-            >
-              <v-row>
-                <v-col cols="12" sm="3" style="padding: 0 !important">
-                  <v-card id="imageCard">
-                    <v-img
-                      :src="pro.imageUrl"
-                      :lazy-src="`../assets/img/back.jpg`"
-                      max-height="180"
-                    ></v-img>
-                  </v-card>
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  sm="8"
-                  class="ml-md-8 mt-md-0 mt-5"
-                  style="padding: 0 !important"
-                >
+            <v-row>
+              <v-col
+                cols="12"
+                sm="4"
+                v-for="(pro, proindex) in books"
+                :key="proindex"
+              >
+                <v-card class="my-10 py-8 px-8">
                   <v-row>
-                    <v-col sm="8" cols="12" class="text-center text-md-left">
+                    <v-row>
+                      <v-img
+                        :src="pro.imageUrl"
+                        :lazy-src="`../assets/img/back.jpg`"
+                        height="120"
+                        max-width="120"
+                        style="margin: auto; border-radius: 50%"
+                      ></v-img>
+                    </v-row>
+
+                    <v-row>
                       <h3 class="blue--text">
                         <i>{{ pro.fullName }}</i>
                       </h3>
@@ -119,33 +116,24 @@
                       <h4>
                         <i>{{ pro.nationality }}</i>
                       </h4>
-                      <h4 class="grey--text">
-                        <i>{{ pro.dwc }}</i>
-                      </h4>
                       <h4>
                         <i>
                           <span>worked for {{ pro.experience }} </span></i
                         >
                       </h4>
-                      <h4 class="grey--text">
-                        <i>{{ pro.religion }}</i>
-                      </h4>
-                      <h4>
-                        <i>Speaks {{ pro.language }}</i>
-                      </h4>
-                    </v-col>
-                    <v-col class="d-flex flex-column" sm="4" cols="12">
+                    </v-row>
+                    <v-row>
                       <v-btn depressed color="primary" class="mb-3">
                         Shop
                       </v-btn>
                       <v-btn depressed @click="detail(pro._id)">
                         See details
                       </v-btn>
-                    </v-col>
+                    </v-row>
                   </v-row>
-                </v-col>
-              </v-row>
-            </v-card>
+                </v-card>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-card>
