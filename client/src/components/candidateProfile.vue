@@ -11,7 +11,7 @@
     </v-snackbar>
     <v-container fluid id="offer" style="max-width: 920px; position: relative">
       <div>
-        <v-card flat outlined class="px-2 py-3">
+        <v-card flat outlined class="py-3">
           <v-toolbar flat>
             <strong>Filter option</strong>
             <v-spacer></v-spacer>
@@ -21,7 +21,7 @@
           </v-toolbar>
           <v-card-txt v-if="windowWidth > 960 || filterIcon">
             <v-row align="center">
-              <v-col cols="12">
+              <v-col cols="6" style="padding: 0 12px !important">
                 <v-select
                   :items="jobTypeMenu"
                   label="select job type"
@@ -30,7 +30,7 @@
                   v-model="jobType"
                 ></v-select>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="6" style="padding: 0 12px !important">
                 <v-select
                   :items="nationalityMenu"
                   label="select nationality"
@@ -39,7 +39,7 @@
                   v-model="nationality"
                 ></v-select>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="6" style="padding: 0 12px !important">
                 <v-select
                   :items="religionMenu"
                   label="select religion"
@@ -48,7 +48,7 @@
                   v-model="religion"
                 ></v-select>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="6" style="padding: 0 12px !important">
                 <v-select
                   :items="ageMenu"
                   label="select age"
