@@ -9,7 +9,7 @@
         </a>
       </div>
       <div class="text-center mt-3" @click="navigator({ name: 'home' })">
-        <span class="primary--text">Hire maids</span>
+        <span class="active--text">Hire maids</span>
       </div>
       <v-divider />
       <v-list dense v-if="!$store.state.isUserLoggedIn">
@@ -93,7 +93,7 @@
       :color="color"
       :flat="flat"
       dark
-      class="navColor px-15 primary--text"
+      class="navColor px-15 active--text"
       :class="{ expand: flat }"
     >
       <v-toolbar-title>
@@ -105,7 +105,7 @@
       <v-spacer />
       <v-app-bar-nav-icon
         @click.stop="drawer = !drawer"
-        class="mr-4 secondary--text"
+        class="mr-4 active--text"
         v-if="isXs"
       />
       <div v-else>
@@ -113,6 +113,14 @@
           v-if="!$store.state.isUserLoggedIn"
           class="hidden-sm-only hidden-xs-only"
         >
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon @click="toggle_dark_mode" v-bind="attrs" v-on="on">
+                <v-icon>mdi-theme-light-dark</v-icon>
+              </v-btn>
+            </template>
+            <span>toggle dark mode</span>
+          </v-tooltip>
           <v-hover v-slot="{ hover }">
             <v-btn
               text
@@ -120,8 +128,8 @@
                 navigator({ name: 'home' });
                 active = 'home';
               "
-              :color="active === 'home' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'home' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Home</span>
             </v-btn>
@@ -133,8 +141,8 @@
                 navigator({ name: 'candidateProfile' });
                 active = 'profile';
               "
-              :color="active === 'profile' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'profile' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Candidate profile</span>
             </v-btn>
@@ -146,8 +154,8 @@
                 navigator({ name: 'services' });
                 active = 'services';
               "
-              :color="active === 'services' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'services' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Services</span>
             </v-btn>
@@ -159,8 +167,8 @@
                 navigator({ name: 'about' });
                 active = 'about';
               "
-              :color="active === 'about' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'about' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">About us</span>
             </v-btn>
@@ -172,8 +180,8 @@
                 navigator({ name: 'contact' });
                 active = 'contact';
               "
-              :color="active === 'contact' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'contact' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Contact us</span>
             </v-btn>
@@ -188,8 +196,8 @@
                 active = 'log';
               "
               v-if="!$store.state.isUserLoggedIn"
-              :color="active === 'log' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'log' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize">Signin/SignUp</span>
             </v-btn>
@@ -208,8 +216,8 @@
                 navigator({ name: 'home' });
                 active = 'home';
               "
-              :color="active === 'home' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'home' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Home</span>
             </v-btn>
@@ -221,8 +229,8 @@
                 navigator({ name: 'viewBooks' });
                 active = 'view';
               "
-              :color="active === 'view' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'view' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">View books</span>
             </v-btn>
@@ -234,8 +242,8 @@
                 navigator({ name: 'addBook' });
                 active = 'add';
               "
-              :color="active === 'add' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'add' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Add customer</span>
             </v-btn>
@@ -247,8 +255,8 @@
                 navigator({ name: 'candidateProfile' });
                 active = 'view_customers';
               "
-              :color="active === 'view_customers' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'view_customers' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">View customers</span>
             </v-btn>
@@ -260,8 +268,8 @@
                 navigator({ name: 'adminRegistration' });
                 active = 'add_admin';
               "
-              :color="active === 'add_admin' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'add_admin' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Add admin</span>
             </v-btn>
@@ -277,8 +285,8 @@
                 active = 'logout';
               "
               class="mx-2"
-              :color="active === 'logout' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'logout' ? 'activeLink' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Logout</span>
             </v-btn>
@@ -297,8 +305,8 @@
                 navigator({ name: 'home' });
                 active = 'home';
               "
-              :color="active === 'home' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'home' ? 'active' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Home</span>
             </v-btn>
@@ -310,8 +318,8 @@
                 navigator({ name: 'candidateProfile' });
                 active = 'profile';
               "
-              :color="active === 'profile' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'profile' ? 'active' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Candidate profile</span>
             </v-btn>
@@ -323,8 +331,8 @@
                 navigator({ name: 'services' });
                 active = 'services';
               "
-              :color="active === 'services' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'services' ? 'active' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Services</span>
             </v-btn>
@@ -336,8 +344,8 @@
                 navigator({ name: 'about' });
                 active = 'about';
               "
-              :color="active === 'about' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'about' ? 'active' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">About us</span>
             </v-btn>
@@ -349,8 +357,8 @@
                 navigator({ name: 'contact' });
                 active = 'contact';
               "
-              :color="active === 'contact' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'contact' ? 'active' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Contact us</span>
             </v-btn>
@@ -366,8 +374,8 @@
                 active = 'logout';
               "
               class="mx-2"
-              :color="active === 'logout' ? 'secondary' : ''"
-              :style="{ 'background-color': hover ? '#0011B1' : '#0086F9' }"
+              :color="active === 'logout' ? 'active' : ''"
+              :style="{ 'background-color': hover ? '#0011B1' : '' }"
             >
               <span class="text-capitalize mr-1">Logout</span>
             </v-btn>
@@ -421,6 +429,10 @@ export default {
     textColor: String,
   },
   methods: {
+    toggle_dark_mode: function () {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      localStorage.setItem("dark_theme", this.$vuetify.theme.dark.toString());
+    },
     onResize() {
       this.isXs = window.innerWidth < 850;
     },

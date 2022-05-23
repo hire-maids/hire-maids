@@ -11,7 +11,7 @@
     </v-snackbar>
     <v-container fluid id="offer" style="max-width: 920px; position: relative">
       <div>
-        <v-card flat outlined class="py-3">
+        <div class="py-3">
           <v-toolbar flat>
             <strong>Filter option</strong>
             <v-spacer></v-spacer>
@@ -67,10 +67,9 @@
               ><span class="text-capitalize white--text">Search</span></v-btn
             >
           </div>
-        </v-card>
+        </div>
       </div>
 
-      <v-card tile class="mx-1 my-3" flat>
         <v-row class="pt-5">
           <v-col cols="12">
             <v-sheet class="pa-3" v-if="loading">
@@ -126,7 +125,7 @@
                     <v-row>
                       <v-col>
                         <v-btn depressed color="primary" style="width: 100%;">
-                          Shop
+                          Book
                         </v-btn>
                       </v-col>
                       <v-col cols="12">
@@ -141,10 +140,10 @@
             </v-row>
           </v-col>
         </v-row>
-      </v-card>
+
     </v-container>
     <br /><br />
-    <div class="svg-border-waves text-white">
+    <div class="svg-border-waves text-white" v-if="!$vuetify.theme.dark">
       <v-img src="~@/assets/img/borderWavesBlue.svg" />
     </div>
     <br /><br />
@@ -293,6 +292,7 @@ p.moto {
   stroke-dasharray: 650;
   stroke-dashoffset: 650;
   -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   opacity: 0.3;
 }
 
@@ -300,9 +300,11 @@ p.moto {
   /*  border: 1px solid red;*/
   display: inline-block;
   -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 
   .triangle {
     -webkit-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
     stroke-dasharray: 240;
     stroke-dashoffset: 480;
     stroke: white;

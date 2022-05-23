@@ -71,7 +71,7 @@
       </v-row>
     </v-container>
     <br /><br />
-    <div class="svg-border-waves text-white">
+    <div class="svg-border-waves text-white" v-if="!$vuetify.theme.dark">
       <v-img src="~@/assets/img/borderWavesBlue.svg" />
     </div>
     <br /><br />

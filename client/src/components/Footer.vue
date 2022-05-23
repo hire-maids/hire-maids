@@ -14,8 +14,7 @@
               <p>
                 <strong><b> Follow us</b></strong>
               </p>
-              <v-card flat tile class="navColor white--text text-center">
-                <v-card-text>
+              
                   <v-btn
                     v-for="(icon, i) in icons"
                     :key="i"
@@ -26,8 +25,6 @@
                   >
                     <v-icon size="24px">{{ icon.text }}</v-icon>
                   </v-btn>
-                </v-card-text>
-              </v-card>
             </v-col>
             <v-col cols="12" sm="4" class="text-center">
               <p>
