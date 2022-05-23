@@ -11,7 +11,7 @@
     </v-snackbar>
     <v-container fluid id="offer" style="max-width: 920px; position: relative">
       <div>
-        <v-card flat outlined class="px-2 py-3">
+        <v-card flat outlined class="py-3">
           <v-toolbar flat>
             <strong>Filter option</strong>
             <v-spacer></v-spacer>
@@ -21,7 +21,7 @@
           </v-toolbar>
           <v-card-txt v-if="windowWidth > 960 || filterIcon">
             <v-row align="center">
-              <v-col cols="12">
+              <v-col cols="6" style="padding: 0 12px !important">
                 <v-select
                   :items="jobTypeMenu"
                   label="select job type"
@@ -30,7 +30,7 @@
                   v-model="jobType"
                 ></v-select>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="6" style="padding: 0 12px !important">
                 <v-select
                   :items="nationalityMenu"
                   label="select nationality"
@@ -39,7 +39,7 @@
                   v-model="nationality"
                 ></v-select>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="6" style="padding: 0 12px !important">
                 <v-select
                   :items="religionMenu"
                   label="select religion"
@@ -48,7 +48,7 @@
                   v-model="religion"
                 ></v-select>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="6" style="padding: 0 12px !important">
                 <v-select
                   :items="ageMenu"
                   label="select age"
@@ -105,30 +105,35 @@
                         style="margin: auto; border-radius: 50%"
                       ></v-img>
                     </v-row>
-
+                    <v-col cols="12">
+                      <div class="d-flex flex-column my-5 text-center">
+                        <h3 class="blue--text">
+                          <i>{{ pro.fullName }}</i>
+                        </h3>
+                        <h3 class="grey--text">
+                          <i>{{ pro.age }}</i>
+                        </h3>
+                        <!-- <h4>
+                          <i>{{ pro.nationality }}</i>
+                        </h4> -->
+                        <h4>
+                          <i>
+                            <span>worked for {{ pro.experience }} </span></i
+                          >
+                        </h4>
+                      </div>
+                    </v-col>
                     <v-row>
-                      <h3 class="blue--text">
-                        <i>{{ pro.fullName }}</i>
-                      </h3>
-                      <h3 class="grey--text">
-                        <i>{{ pro.age }}</i>
-                      </h3>
-                      <h4>
-                        <i>{{ pro.nationality }}</i>
-                      </h4>
-                      <h4>
-                        <i>
-                          <span>worked for {{ pro.experience }} </span></i
-                        >
-                      </h4>
-                    </v-row>
-                    <v-row>
-                      <v-btn depressed color="primary" class="mb-3">
-                        Shop
-                      </v-btn>
-                      <v-btn depressed @click="detail(pro._id)">
-                        See details
-                      </v-btn>
+                      <v-col>
+                        <v-btn depressed color="primary" style="width: 100%;">
+                          Shop
+                        </v-btn>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-btn depressed @click="detail(pro._id)" style="width: 100%;">
+                          See details
+                        </v-btn>
+                      </v-col>
                     </v-row>
                   </v-row>
                 </v-card>

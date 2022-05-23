@@ -3,7 +3,7 @@
     <v-container class="my-10" style="max-width: 920px; position: relative">
       <br /><br />
       <v-row>
-        <v-col cols="12" sm="6" class="mx-auto">
+        <v-col cols="12" sm="4" class="mx-auto">
           <v-card align="center" flat>
             <v-img :src="detail.imageUrl" height="160">
               <v-card-title class="white--text mt-8">
@@ -39,7 +39,7 @@
             </v-img>
           </v-card>
         </v-col> -->
-        <v-col cols="12" sm="6" class="mx-auto">
+        <v-col cols="12" sm="8" class="mx-auto">
           <!-- <v-card class="pa-2" align="center"> -->
 
           <video
@@ -65,126 +65,153 @@
 
       <br />
 
-      <v-tabs v-model="tab">
-        <v-tab>Basic Info</v-tab>
-        <v-tab>Education and Experience</v-tab>
-        <v-tab>Skills and Knowledge</v-tab>
-
-        <v-tab-item>
-          <v-card class="pa-5 text-center text-sm-left">
-            <h4 class="my-2 secondary--text">
-              Name: <span class="grey--text">{{ detail.fullName }}</span>
-            </h4>
-            <h4
-              class="secondary--text"
-              v-if="
-                $store.state.isUserLoggedIn && $store.state.user.role == 'admin'
-              "
-            >
-              <span>{{ detail.phoneNumber }}</span>
-            </h4>
-            <h4 class="my-2 secondary--text">
-              Designation: <span class="grey--text">{{ detail.dwc }}</span>
-            </h4>
-            <h4 class="my-2 secondary--text">
-              Age: <span class="grey--text">{{ detail.age }}</span>
-            </h4>
-            <h4 class="my-2 secondary--text">
-              Nationality:
-              <span class="grey--text">{{ detail.nationality }}</span>
-            </h4>
-            <h4 class="my-2 secondary--text">
-              Availability:
-              <span class="grey--text">{{ detail.availability }}</span>
-            </h4>
-            <h4 class="my-2 secondary--text">
-              Religion: <span class="grey--text">{{ detail.religion }}</span>
-            </h4>
-          </v-card>
-        </v-tab-item>
-
-        <v-tab-item>
-          <v-card class="pa-5 text-center text-sm-left">
-            <h4 class="my-2 secondary--text">
-              Experience:
-              <span class="grey--text">{{ detail.experience }}</span>
-            </h4>
-            <h4 class="my-2 secondary--text">
-              Job Type: <span class="grey--text">{{ detail.jobType }}</span>
-            </h4>
-          </v-card>
-        </v-tab-item>
-
-        <v-tab-item>
-          <v-card class="pa-5 ">
-            <h4 class="my-2 secondary--text">Skills:</h4>
-            <h5>
-              <p class="grey--text" style="white-space: pre-wrap">
-                {{ detail.skill }}
-              </p>
-            </h5>
-            <h4 class="my-2 secondary--text">
-              Language: <span class="grey--text">{{ detail.language }}</span>
-            </h4>
-            <br />
-            <span class="red--text" v-if="bookingError"
-              >Your Information is required to book, so please fill it out
-              correctly.</span
-            >
-            <v-text-field
-              label="Full name"
-              outlined
-              dense
-              color="primary"
-              v-model="fullName"
-              v-if="!$store.state.isUserLoggedIn"
-            ></v-text-field>
-            <v-text-field
-              label="Phone number"
-              outlined
-              dense
-              color="primary"
-              v-model="phoneNumber"
-              v-if="!$store.state.isUserLoggedIn"
-            ></v-text-field>
-            <div
-              class="text-xs-center mx-3"
-              v-if="
-                !$store.state.isUserLoggedIn ||
-                $store.state.user.role == 'customer'
-              "
-            >
-              <v-btn
-                block
-                rounded
-                outlined
-                @click="addBooks(detail.fullName, detail.phoneNumber)"
-                :loading="loading"
-                class="primary"
-                ><span class="text-capitalize white--text"
-                  >Book Now</span
-                ></v-btn
+      <div
+        class="d-flex justify-space-between mt-10 dataTable"
+        style="flex-wrap: wrap"
+      >
+        <h3 style="flex: 1" class="mb-5">Basic Info</h3>
+        <v-simple-table style="flex: 2">
+          <template v-slot:default>
+            <tbody>
+              <tr>
+                <td><h4>Name</h4></td>
+                <td class="grey--text">{{ detail.fullName }}</td>
+              </tr>
+              <tr
+                v-if="
+                  $store.state.isUserLoggedIn &&
+                  $store.state.user.role == 'admin'
+                "
               >
-            </div>
-            <div
-              class="text-xs-center mx-3"
-              v-if="
-                $store.state.isUserLoggedIn && $store.state.user.role == 'admin'
-              "
+                <td><h4>Phone number</h4></td>
+                <td class="grey--text">{{ detail.phoneNumber }}</td>
+              </tr>
+              <tr>
+                <td><h4>Designation</h4></td>
+                <td class="grey--text">{{ detail.dwc }}</td>
+              </tr>
+              <tr>
+                <td><h4>Age</h4></td>
+                <td class="grey--text">{{ detail.age }}</td>
+              </tr>
+              <tr>
+                <td><h4>Nationality</h4></td>
+                <td class="grey--text">{{ detail.nationality }}</td>
+              </tr>
+              <tr>
+                <td><h4>Availability</h4></td>
+                <td class="grey--text">{{ detail.availability }}</td>
+              </tr>
+              <tr>
+                <td><h4>Religion</h4></td>
+                <td class="grey--text">{{ detail.religion }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </div>
+
+      <div
+        class="d-flex justify-space-between mt-10 dataTable"
+        style="flex-wrap: wrap"
+      >
+        <h3 style="flex: 1" class="mb-5">Education and Experience</h3>
+        <v-simple-table style="flex: 2">
+          <template v-slot:default>
+            <tbody>
+              <tr>
+                <td><h4>Experience</h4></td>
+                <td class="grey--text">{{ detail.experience }}</td>
+              </tr>
+              <tr>
+                <td><h4>Job Type</h4></td>
+                <td class="grey--text">{{ detail.jobType }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </div>
+
+      <div
+        class="d-flex justify-space-between mt-10 dataTable"
+        style="flex-wrap: wrap"
+      >
+        <h3 style="flex: 1" class="mb-5">Skills and Knowledge</h3>
+
+        <v-simple-table style="flex: 2">
+          <template v-slot:default>
+            <tbody>
+              <tr>
+                <td><h4>Skills</h4></td>
+                <td class="grey--text">{{ detail.skill }}</td>
+              </tr>
+              <tr>
+                <td><h4>Language</h4></td>
+                <td class="grey--text">{{ detail.language }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </div>
+
+      <div
+        class="d-flex justify-space-between mt-10 dataTable"
+        style="flex-wrap: wrap"
+      >
+        <h3 class="mb-5" style="flex: 1">Booking</h3>
+
+        <div style="flex: 2; display: flex; flex-direction: column">
+          <v-text-field
+            label="Full name"
+            outlined
+            dense
+            color="primary"
+            v-model="fullName"
+            v-if="!$store.state.isUserLoggedIn"
+          ></v-text-field>
+          <v-text-field
+            label="Phone number"
+            outlined
+            dense
+            color="primary"
+            v-model="phoneNumber"
+            v-if="!$store.state.isUserLoggedIn"
+          ></v-text-field>
+          <div
+            class="text-xs-center mx-3"
+            v-if="
+              !$store.state.isUserLoggedIn ||
+              $store.state.user.role == 'customer'
+            "
+          >
+            <v-btn
+              block
+              rounded
+              outlined
+              @click="addBooks(detail.fullName, detail.phoneNumber)"
+              :loading="loading"
+              class="primary"
+              ><span class="text-capitalize white--text">Book Now</span></v-btn
             >
-              <v-btn
-                block
-                rounded
-                outlined
-                @click="deleteCustomerInfo(detail._id)"
-                :loading="loading"
-                class="primary"
-                ><span class="text-capitalize white--text">Delete</span></v-btn
-              >
-            </div>
-          </v-card>
-        </v-tab-item>
-      </v-tabs>
+          </div>
+          <div
+            class="text-xs-center mx-3"
+            v-if="
+              $store.state.isUserLoggedIn && $store.state.user.role == 'admin'
+            "
+          >
+            <v-btn
+              block
+              rounded
+              outlined
+              @click="deleteCustomerInfo(detail._id)"
+              :loading="loading"
+              class="primary"
+              ><span class="text-capitalize white--text">Delete</span></v-btn
+            >
+          </div>
+        </div>
+      </div>
     </v-container>
     <br /><br />
     <div class="svg-border-waves text-white">
@@ -261,8 +288,11 @@ export default {
   },
 };
 </script>
-<style scoped>
-.selectextShadowHost {
-  display: none !important;
-}
+<style scoped lang="sass">
+.selectextShadowHost
+  display: none !important
+
+.dataTable
+  @media screen and (max-width: 500px)
+    flex-direction: column
 </style>

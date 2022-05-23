@@ -1,7 +1,8 @@
 <template>
   <section class="white mt-12">
     <div class="staticHero">
-      <v-img src="../assets/img/about-us.jpg" style="max-height: 500px"> </v-img>
+      <v-img src="../assets/img/about-us.jpg" style="max-height: 500px">
+      </v-img>
     </div>
     <v-container
       fluid
@@ -25,9 +26,9 @@
                 <v-row>
                   <v-col cols="12" class="align-center">
                     <p class="about">
-                      Binhareb was established in 2011, as a premier
+                      Hire maids was established in 2011, as a premier
                       housekeeping service for families in Dubai. For the past
-                      years, binhareb Co. is the market leader in recruitment
+                      years, Hire maids Co. is the market leader in recruitment
                       and placement of full time maids (live-in).
                     </p>
 
