@@ -69,12 +69,12 @@
         class="d-flex justify-space-between mt-10 dataTable"
         style="flex-wrap: wrap"
       >
-        <h3 style="flex: 1" class="mb-5">Basic Info</h3>
+        <h3 style="flex: 1; color: #2196F3" class="mb-5">Basic Info</h3>
         <v-simple-table style="flex: 2">
           <template v-slot:default>
             <tbody>
               <tr>
-                <td><h4>Name</h4></td>
+                <td><h4 >Name</h4></td>
                 <td class="grey--text">{{ detail.fullName }}</td>
               </tr>
               <tr
@@ -83,27 +83,27 @@
                   $store.state.user.role == 'admin'
                 "
               >
-                <td><h4>Phone number</h4></td>
+                <td><h4 >Phone number</h4></td>
                 <td class="grey--text">{{ detail.phoneNumber }}</td>
               </tr>
               <tr>
-                <td><h4>Designation</h4></td>
+                <td><h4 >Designation</h4></td>
                 <td class="grey--text">{{ detail.dwc }}</td>
               </tr>
               <tr>
-                <td><h4>Age</h4></td>
+                <td><h4 >Age</h4></td>
                 <td class="grey--text">{{ detail.age }}</td>
               </tr>
               <tr>
-                <td><h4>Nationality</h4></td>
+                <td><h4 >Nationality</h4></td>
                 <td class="grey--text">{{ detail.nationality }}</td>
               </tr>
               <tr>
-                <td><h4>Availability</h4></td>
+                <td><h4 >Availability</h4></td>
                 <td class="grey--text">{{ detail.availability }}</td>
               </tr>
               <tr>
-                <td><h4>Religion</h4></td>
+                <td><h4 >Religion</h4></td>
                 <td class="grey--text">{{ detail.religion }}</td>
               </tr>
             </tbody>
@@ -115,16 +115,16 @@
         class="d-flex justify-space-between mt-10 dataTable"
         style="flex-wrap: wrap"
       >
-        <h3 style="flex: 1" class="mb-5">Education and Experience</h3>
+        <h3 style="flex: 1; color: #2196F3" class="mb-5">Education and Experience</h3>
         <v-simple-table style="flex: 2">
           <template v-slot:default>
             <tbody>
               <tr>
-                <td><h4>Experience</h4></td>
+                <td><h4 >Experience</h4></td>
                 <td class="grey--text">{{ detail.experience }}</td>
               </tr>
               <tr>
-                <td><h4>Job Type</h4></td>
+                <td><h4 >Job Type</h4></td>
                 <td class="grey--text">{{ detail.jobType }}</td>
               </tr>
             </tbody>
@@ -136,17 +136,17 @@
         class="d-flex justify-space-between mt-10 dataTable"
         style="flex-wrap: wrap"
       >
-        <h3 style="flex: 1" class="mb-5">Skills and Knowledge</h3>
+        <h3 style="flex: 1; color: #2196F3" class="mb-5">Skills and Knowledge</h3>
 
         <v-simple-table style="flex: 2">
           <template v-slot:default>
             <tbody>
               <tr>
-                <td><h4>Skills</h4></td>
+                <td><h4 >Skills</h4></td>
                 <td class="grey--text">{{ detail.skill }}</td>
               </tr>
               <tr>
-                <td><h4>Language</h4></td>
+                <td><h4 >Language</h4></td>
                 <td class="grey--text">{{ detail.language }}</td>
               </tr>
             </tbody>
@@ -158,7 +158,7 @@
         class="d-flex justify-space-between mt-10 dataTable"
         style="flex-wrap: wrap"
       >
-        <h3 class="mb-5" style="flex: 1">Booking</h3>
+        <h3 class="mb-5" style="flex: 1; color: #2196F3">Booking</h3>
 
         <div style="flex: 2; display: flex; flex-direction: column">
           <v-text-field
@@ -190,7 +190,7 @@
               outlined
               @click="addBooks(detail.fullName, detail.phoneNumber)"
               :loading="loading"
-              class="primary"
+              class="secondary"
               ><span class="text-capitalize white--text">Book Now</span></v-btn
             >
           </div>
@@ -214,7 +214,7 @@
       </div>
     </v-container>
     <br /><br />
-    <div class="svg-border-waves text-white">
+    <div class="svg-border-waves text-white" v-if="!$vuetify.theme.dark">
       <v-img src="~@/assets/img/borderWavesBlue.svg" />
     </div>
     <br /><br />

@@ -1,89 +1,5 @@
 <template>
   <section id="hero">
-    <!-- <v-container id="someImage"></v-container> -->
-    <!-- <v-container fluid id="offer" class="py-10" data-aos="zoom-in-down" data-aos-delay="500">
-      <v-row align="center" justify="center">
-        <v-col cols="12">
-          <v-row align="center" justify="space-around">
-            <v-col cols="12" sm="4" class="text-center">
-              <v-hover v-slot:default="{ hover }">
-                <v-card class="card" shaped :elevation="hover ? 10 : 4" :class="{ up: hover }">
-                  <h1 class="primary--text">Recruitment</h1>
-                  <v-list>
-                    <v-list-item>
-                      <v-icon color="orange" class="mr-3">mdi-check-all</v-icon>
-                        <h4 class="font-weight-regular subtitle-1">Maid</h4>
-                    </v-list-item>
-                    <v-list-item>
-                        <v-icon color="orange" class="mr-3"> mdi-check-all</v-icon>
-                        <h4 class="font-weight-regular subtitle-1">Babysitter</h4>
-                    </v-list-item>
-                    <v-list-item>
-                      <v-icon color="orange" class="mr-3">mdi-check-all</v-icon>
-                        <h4 class="font-weight-regular subtitle-1">Qualified Nannies</h4>
-                    </v-list-item>
-                    <v-list-item>
-                        <v-icon color="orange" class="mr-3"> mdi-check-all</v-icon>
-                        <h4 class="font-weight-regular subtitle-1">Certified Caregiver</h4>
-                    </v-list-item>
-                  </v-list>
-                </v-card>
-              </v-hover>
-            </v-col>
-            <v-col cols="12" sm="4" class="text-center">
-              <v-hover v-slot:default="{ hover }">
-                <v-card class="card" shaped :elevation="hover ? 10 : 4" :class="{ up: hover }">
-                  <h1 class="primary--text">Domestic Worker Visa Service</h1>
-                    <v-list>
-                      <v-list-item>
-                        <v-icon color="orange" class="mr-3">mdi-check-all</v-icon>
-                          <h4 class="font-weight-regular subtitle-1">Maid Visa</h4>
-                      </v-list-item>
-                      <v-list-item>
-                          <v-icon color="orange" class="mr-3"> mdi-check-all</v-icon>
-                          <h4 class="font-weight-regular subtitle-1">Nanny Visa</h4>
-                      </v-list-item>
-                      <v-list-item>
-                        <v-icon color="orange" class="mr-3">mdi-check-all</v-icon>
-                          <h4 class="font-weight-regular subtitle-1">Housekeeper Visa</h4>
-                      </v-list-item>
-                      <v-list-item>
-                          <v-icon color="orange" class="mr-3"> mdi-check-all</v-icon>
-                          <h4 class="font-weight-regular subtitle-1">Babysitter Visa</h4>
-                      </v-list-item>
-                    </v-list>                
-                  </v-card>
-              </v-hover>
-            </v-col>
-            <v-col cols="12" sm="4" class="text-center">
-              <v-hover v-slot:default="{ hover }">
-                <v-card class="card" shaped :elevation="hover ? 10 : 4" :class="{ up: hover }">
-                  <h1 class="primary--text">Full-Time Live-In</h1>
-                      <v-list>
-                        <v-list-item>
-                          <v-icon color="orange" class="mr-3">mdi-check-all</v-icon>
-                            <h4 class="font-weight-regular subtitle-1">From AED 2,300</h4>
-                        </v-list-item>
-                        <v-list-item>
-                            <v-icon color="orange" class="mr-3"> mdi-check-all</v-icon>
-                            <h4 class="font-weight-regular subtitle-1">Flexible Contract</h4>
-                        </v-list-item>
-                        <v-list-item>
-                          <v-icon color="orange" class="mr-3">mdi-check-all</v-icon>
-                            <h4 class="font-weight-regular subtitle-1">No Hassle - Free</h4>
-                        </v-list-item>
-                        <v-list-item>
-                            <v-icon color="orange" class="mr-3"> mdi-check-all</v-icon>
-                            <h4 class="font-weight-regular subtitle-1">Replacements</h4>
-                        </v-list-item>
-                      </v-list>                
-                </v-card>
-              </v-hover>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-container> -->
     <v-container class="my-10" style="max-width: 920px; position: relative">
       <br /><br /><br />
       <v-row justify="center">
@@ -146,7 +62,7 @@
                   limited presentation skills, and doesn’t have a high level of
                   expectation/experience in quality settings/luxury finishes.
                 </p>
-                <v-list>
+                <div>
                   <p>
                     Training required for good Housekeeping theory, Housekeeping
                     vocabulary and English or Arabic General Language vocabulary
@@ -177,7 +93,7 @@
                     (minimum 3+) in working life, with fluency in English or
                     Arabic are suitable for classification to Housekeeper level.
                   </p>
-                </v-list>
+                </div>
               </v-col>
             </v-row>
           </slot>
@@ -212,7 +128,7 @@
             <v-row align="center" justify="center">
               <v-col cols="12" md="6">
                 <h3 class="secondary--text text-center">Duty</h3>
-                <v-list>
+                <div>
                   <v-list-item>
                     <v-icon color="orange" class="mr-3">mdi-check-all</v-icon>
                     <v-list-item-subtitle
@@ -283,10 +199,10 @@
                       uses</v-list-item-subtitle
                     >
                   </v-list-item>
-                </v-list>
+                </div>
               </v-col>
               <v-col cols="12" md="6">
-                <v-list>
+                <div>
                   <v-list-item>
                     <v-icon color="orange" class="mr-3">mdi-check-all</v-icon>
                     <v-list-item-subtitle
@@ -348,7 +264,7 @@
                       time</v-list-item-subtitle
                     >
                   </v-list-item>
-                </v-list>
+                </div>
               </v-col>
             </v-row>
           </slot>
@@ -371,7 +287,7 @@
                   welfare and safety of children, (no general housekeeping but
                   may involve some cooking/cleaning for the children).
                 </p>
-                <v-list>
+                <div>
                   <p>
                     Work effectively with parents/guardians to provide care and
                     support for infants, children, able-bodied and non-able
@@ -423,7 +339,7 @@
                       parents/guardian.</v-list-item-subtitle
                     >
                   </v-list-item>
-                </v-list>
+                </div>
               </v-col>
             </v-row>
           </slot>
@@ -445,7 +361,7 @@
                   that is safe and fresh as well. They often have the following
                   responsibilities:
                 </p>
-                <v-list>
+                <div>
                   <v-list-item>
                     <v-icon color="orange" class="mr-3">mdi-check-all</v-icon>
                     <v-list-item-subtitle>
@@ -501,7 +417,7 @@
                       standards</v-list-item-subtitle
                     >
                   </v-list-item>
-                </v-list>
+                </div>
               </v-col>
             </v-row>
           </slot>
@@ -518,7 +434,7 @@
       <h1 class="primary--text text-center">Need Assistance?</h1>
       <v-layout row wrap justify-space-around>
         <v-flex xs12 md3 class="ma-3">
-          <v-card class="text-xs-center ma-10 max-auto" flat>
+          <div class="text-xs-center ma-10 max-auto" flat>
             <v-responsive class="pt-4">
               <h2>Phone</h2>
               <a style="text-decoration: none" href="tel:+251986551414">
@@ -530,10 +446,10 @@
                 <p>+251 98 655 1414</p></a
               >
             </v-responsive>
-          </v-card>
+          </div>
         </v-flex>
         <v-flex xs12 md3 class="ma-3">
-          <v-card class="text-xs-center ma-10 max-auto" flat>
+          <div class="text-xs-center ma-10 max-auto" flat>
             <v-responsive class="pt-4">
               <h2>Email</h2>
               <a
@@ -548,10 +464,10 @@
                 <p>info@binhareb.com</p></a
               >
             </v-responsive>
-          </v-card>
+          </div>
         </v-flex>
         <v-flex xs12 md3 class="ma-3 text-xs-center">
-          <v-card class="text-xs-center ma-10 max-auto" flat>
+          <div class="text-xs-center ma-10 max-auto" flat>
             <v-responsive class="pt-4">
               <h2>Whatsapp</h2>
               <a
@@ -566,11 +482,11 @@
                 <p>+251 98 655 1414</p></a
               >
             </v-responsive>
-          </v-card>
+          </div>
         </v-flex>
       </v-layout>
     </div>
-    <div class="svg-border-waves text-white">
+    <div class="svg-border-waves text-white" v-if="!$vuetify.theme.dark">
       <v-img src="~@/assets/img/borderWavesBlue.svg" />
     </div>
   </section>
@@ -710,6 +626,7 @@ p.description {
   stroke-dasharray: 650;
   stroke-dashoffset: 650;
   -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   opacity: 0.3;
 }
 
@@ -717,9 +634,11 @@ p.description {
   /*  border: 1px solid red;*/
   display: inline-block;
   -webkit-transition: all 0.5s ease;
+ transition: all 0.5s ease;
 
   .triangle {
     -webkit-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
     stroke-dasharray: 240;
     stroke-dashoffset: 480;
     stroke: white;

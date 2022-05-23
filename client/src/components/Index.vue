@@ -46,11 +46,11 @@
           <v-btn depressed large color="primary mb-5 mb-md-0">
             Explore Maids
           </v-btn>
-          <v-btn depressed large class="ml-md-5"> Hire A Maid </v-btn>
+          <v-btn depressed large class="ml-md-5" @click="$router.push('/candidate_profile')"> Hire A Maid </v-btn>
         </div>
       </div>
 
-      <v-card tile class="mx-1 my-3" flat>
+     
         <v-row class="pt-5">
           <v-col cols="12">
             <v-row>
@@ -149,10 +149,9 @@
             </v-row>
           </v-col>
         </v-row>
-      </v-card>
     </v-container>
     <br /><br />
-    <div class="svg-border-waves text-white">
+    <div class="svg-border-waves text-white" v-if="!$vuetify.theme.dark">
       <v-img src="~@/assets/img/borderWavesBlue.svg" />
     </div>
     <br /><br />
