@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer v-model="drawer" app temporary color="white">
+    <v-navigation-drawer v-model="drawer" app temporary >
       <div class="text-center mt-3">
         <a>
           <v-avatar color="grey lighten-3" size="100">
@@ -86,6 +86,12 @@
             <v-list-item-title class="subtitile-1">Logout</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+      </v-list>
+      <v-list justify="center">
+            <v-list-item-icon class="justify-center" @click="toggle_dark_mode">
+                <v-icon>mdi-theme-light-dark</v-icon>
+              </v-list-item-icon>
+            <span>toggle dark mode</span>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar

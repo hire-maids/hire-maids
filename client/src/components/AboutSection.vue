@@ -1,5 +1,5 @@
 <template>
-  <section class="white mt-12">
+  <section class="mt-12">
     <div class="staticHero">
       <v-img src="../assets/img/about-us.jpg" style="max-height: 500px">
       </v-img>

@@ -555,6 +555,7 @@ export default {
   methods: {},
 };
 </script>
+
 <style lang="scss">
 .contact-icon {
   height: 60px;

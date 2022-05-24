@@ -9,7 +9,7 @@
             <v-card class="elevation-6 mt-3">
              <v-window>
                 <v-window-item>
-                <v-form enctype="multipart/form-data" class="white  pt-1 " autocomplete="off" v-model="checkValidity">
+                <v-form enctype="multipart/form-data" class="pt-1 " autocomplete="off" v-model="checkValidity">
                   <v-row>
                     <v-col cols="12" md="6" class="primary rounded-br-xl hidden-sm-and-down" >
                      <div style="  text-align: center; padding: 180px 50px;">
@@ -56,7 +56,7 @@
       </v-row>
       <br><br>
       </div>
-      <div class="svg-border-waves text-white">
+      <div class="svg-border-waves text-white" v-if="!$vuetify.theme.dark">
        <v-img src="~@/assets/img/borderWavesBlue.svg"/>
       </div>
       <br><br>

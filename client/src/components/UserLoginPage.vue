@@ -9,7 +9,7 @@
               <v-window-item>
                 <v-form
                   enctype="multipart/form-data"
-                  class="white pt-4"
+                  class="pt-4"
                   autocomplete="off"
                   v-model="checkValidity"
                 >

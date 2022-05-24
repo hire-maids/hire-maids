@@ -1,5 +1,5 @@
 <template>
-  <section class="white mt-12">
+  <section class="mt-12">
     <div id="image">
       <v-img src="../assets/img/contactUs.jpg" style="max-height: 500px"></v-img>
     </div>
@@ -32,7 +32,7 @@
       </v-row>
     </v-container>
     <br><br>
-    <div class="svg-border-waves text-white">
+    <div class="svg-border-waves text-white" v-if="!$vuetify.theme.dark">
       <v-img src="~@/assets/img/borderWavesBlue.svg"/>
     </div>
     <br><br>
