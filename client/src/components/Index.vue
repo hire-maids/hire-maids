@@ -46,109 +46,115 @@
           <v-btn depressed large color="primary mb-5 mb-md-0">
             Explore Maids
           </v-btn>
-          <v-btn depressed large class="ml-md-5" @click="$router.push('/candidate_profile')"> Hire A Maid </v-btn>
+          <v-btn
+            depressed
+            large
+            class="ml-md-5"
+            @click="$router.push('/candidate_profile')"
+          >
+            Hire A Maid
+          </v-btn>
         </div>
       </div>
 
-     
-        <v-row class="pt-5">
-          <v-col cols="12">
-            <v-row>
-              <v-col cols="12">
-                <div style="position: sticky; top: 16px">
-                  <v-chip-group active-class="primary--text" mandatory column>
-                    <v-chip
-                      v-for="tag in categories"
-                      :key="tag"
-                      @click="category(tag)"
-                    >
-                      {{ tag }}
-                    </v-chip>
-                  </v-chip-group>
-
-                  <v-sheet class="pa-3" v-if="loading">
-                    <v-skeleton-loader
-                      v-bind="attrs"
-                      type="list-item-three-line, card-heading, list-item-three-line, card-heading"
-                    ></v-skeleton-loader>
-                  </v-sheet>
-
-                  <!-- <v-tabs-items v-model="tab">
-                    <v-tab-item v-for="item in categories" :key="item"> -->
-                  <!-- <v-container
-                      > -->
-                  <v-card
-                    v-for="(pro, proindex) in books"
-                    :key="proindex"
-                    class="my-10 py-8 px-8"
+      <v-row class="pt-5">
+        <v-col cols="12">
+          <v-row>
+            <v-col cols="12">
+              <div style="position: sticky; top: 16px">
+                <v-chip-group active-class="primary--text" mandatory column>
+                  <v-chip
+                    v-for="tag in categories"
+                    :key="tag"
+                    @click="category(tag)"
                   >
-                    <v-row>
-                      <v-col cols="12" sm="3" style="padding: 0 !important">
-                        <v-card id="imageCard" style="background-color: #000">
-                          <!-- <v-img
+                    {{ tag }}
+                  </v-chip>
+                </v-chip-group>
+
+                <v-sheet class="pa-3" v-if="loading">
+                  <v-skeleton-loader
+                    v-bind="attrs"
+                    type="list-item-three-line, card-heading, list-item-three-line, card-heading"
+                  ></v-skeleton-loader>
+                </v-sheet>
+
+                <!-- <v-tabs-items v-model="tab">
+                    <v-tab-item v-for="item in categories" :key="item"> -->
+                <!-- <v-container
+                      > -->
+                <v-card
+                  v-for="(pro, proindex) in books"
+                  :key="proindex"
+                  class="my-10 py-8 px-8"
+                >
+                  <v-row>
+                    <v-col cols="12" sm="3" style="padding: 0 !important">
+                      <v-card id="imageCard" style="background-color: #000">
+                        <!-- <v-img
                             :src="pro.imageUrl"
                             :lazy-src="`../assets/img/back.jpg`"
                             max-height="180"
                           ></v-img> -->
-                          <video
-                            ref="videoRef"
-                            :src="pro.videoUrl"
-                            id="video-container"
-                            height="180"
-                            width="100%"
-                            controls
-                          ></video>
-                        </v-card>
-                      </v-col>
+                        <video
+                          ref="videoRef"
+                          :src="pro.videoUrl"
+                          id="video-container"
+                          height="180"
+                          width="100%"
+                          controls
+                        ></video>
+                      </v-card>
+                    </v-col>
 
-                      <v-col
-                        cols="12"
-                        sm="8"
-                        class="ml-md-8 mt-md-0 mt-5"
-                        style="padding: 0 !important"
-                      >
-                        <v-row>
-                          <v-col sm="8" cols="12" :style="align">
-                            <h3 class="blue--text">
-                              <i>{{ pro.fullName }}</i>
-                            </h3>
-                            <h4>
-                              <i>{{ pro.nationality }}</i>
-                            </h4>
-                            <h4>
-                              <i>
-                                <span class="grey--text"
-                                  >worked for {{ pro.experience }}
-                                </span></i
-                              >
-                            </h4>
-                            <h4>
-                              <i>Speaks {{ pro.language }}</i>
-                            </h4>
-                          </v-col>
-                          <v-col class="d-flex flex-column" sm="4" cols="12">
-                            <v-btn
-                              depressed
-                              color="primary"
-                              class="mb-3"
-                              @click="detail(pro._id)"
+                    <v-col
+                      cols="12"
+                      sm="8"
+                      class="ml-md-8 mt-md-0 mt-5"
+                      style="padding: 0 !important"
+                    >
+                      <v-row>
+                        <v-col sm="8" cols="12" :style="align">
+                          <h3 class="blue--text">
+                            <i>{{ pro.fullName }}</i>
+                          </h3>
+                          <h4>
+                            <i>{{ pro.nationality }}</i>
+                          </h4>
+                          <h4>
+                            <i>
+                              <span class="grey--text"
+                                >worked for {{ pro.experience }}
+                              </span></i
                             >
-                              See details
-                            </v-btn>
-                            <v-btn depressed> Add to favorites </v-btn>
-                          </v-col>
-                        </v-row>
-                      </v-col>
-                    </v-row>
-                  </v-card>
-                  <!-- </v-container> -->
-                  <!-- </v-tab-item>
+                          </h4>
+                          <h4>
+                            <i>Speaks {{ pro.language }}</i>
+                          </h4>
+                        </v-col>
+                        <v-col class="d-flex flex-column" sm="4" cols="12">
+                          <v-btn
+                            depressed
+                            color="primary"
+                            class="mb-3"
+                            @click="detail(pro._id)"
+                          >
+                            See details
+                          </v-btn>
+                          <v-btn depressed> Add to favorites </v-btn>
+                        </v-col>
+                      </v-row>
+                    </v-col>
+                  </v-row>
+                </v-card>
+                <!-- </v-container> -->
+                <!-- </v-tab-item>
                   </v-tabs-items> -->
-                </div>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
+              </div>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
     </v-container>
     <br /><br />
     <div class="svg-border-waves text-white" v-if="!$vuetify.theme.dark">
@@ -178,7 +184,7 @@ export default {
       age: "",
       searchError: false,
       nationalityMenu: ["Ethiopian", "Philippines"],
-      categories: ["All", "Ethiopian", "Philippines"],
+      categories: ["All", "Ethiopian", "Philippines", "Indonesian", "Ugandan"],
     };
   },
 
