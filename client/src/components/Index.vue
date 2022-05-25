@@ -15,7 +15,7 @@
       class="mt-5"
       style="max-width: 920px; position: relative"
     >
-      <v-img src="../assets/img/hero-image.png" max-height="200"></v-img>
+      <v-img src="../assets/img/hero-image.png" max-height="200" class="mb-10"></v-img>
       <!-- <div class="mb-15">
         <div
           class="
