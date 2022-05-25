@@ -15,10 +15,8 @@
       class="mt-5"
       style="max-width: 920px; position: relative"
     >
-      <v-card outlined>
-        <v-img src="../assets/img/hero-image.png" max-height="200"></v-img>
-      </v-card>
-      <div class="mb-15">
+      <v-img src="../assets/img/hero-image.png" max-height="200"></v-img>
+      <!-- <div class="mb-15">
         <div
           class="
             text-h5 text-sm-h4 text-md-h4
@@ -55,7 +53,7 @@
             Hire A Maid
           </v-btn>
         </div>
-      </div>
+      </div> -->
 
       <v-row class="pt-5">
         <v-col cols="12">
